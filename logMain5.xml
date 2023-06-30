@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-06-30T15:04:05.710967500Z</date>
+  <millis>1688137445710</millis>
+  <nanos>967500</nanos>
+  <sequence>0</sequence>
+  <logger>Main5</logger>
+  <level>INFO</level>
+  <class>Main5</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Sort Array</message>
+</record>
+</log>

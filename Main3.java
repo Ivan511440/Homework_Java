@@ -1,36 +1,79 @@
 // Реализовать простой калькулятор (+ - / *)
+// Ввод числа ->
+// Ввод знака ->
+// Ввод числа ->
+
+
 
 import java.util.Scanner;
 
-public class Main3 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Введите первое число: ");
-        int numb_a = sc.nextInt();
-        System.out.println("Введите операцию: +, -, /, *");
-        char operation;
-        System.out.print("Введите второе число: ");
-        int numb_b = sc.nextInt();
-        operation = sc.next().charAt(0);
-        int res;
-        switch (operation) {
-            case '+':
-            res = numb_a + numb_b;
-            System.out.printf("Результат: %d", res);
+public class Main3{
+    static int getSum(int a, int b) {
+        return a + b;
+    }
+
+    static int getSubtraction(int a, int b) {
+        return a - b;
+    }
+
+    static int getProduct(int a, int b) {
+        return a * b;
+    }
+
+    static double getDivision(int a, int b) {
+        return (double) a / (double) b;
+    }
+
+    static void printResultOfOperation(int a, int b, String signOperation) {
+        switch (signOperation) {
+        case "+":
+            System.out.printf("%d %s %d = %d \n", a, signOperation, b, getSum(a, b));
             break;
-            case '-':
-            res = numb_a - numb_b;
-            System.out.printf("Результат: %d", res);
+        case "-":
+            System.out.printf("%d %s %d = %d \n", a, signOperation, b, getSubtraction(a, b));
             break;
-            case '/':
-            res = numb_a / numb_b;
-            System.out.printf("Результат: %d", res);
+        case "*":
+            System.out.printf("%d %s %d = %d \n", a, signOperation, b, getProduct(a, b));
             break;
-            case '*':
-            res = numb_a * numb_b;
-            System.out.printf("Результат: %d", res);
+        case "/":
+            if (b != 0) {
+                System.out.printf("%d %s %d = %.4f \n", a, signOperation, b, getDivision(a, b));
+            } else {
+                System.out.println("ERROR: division by zero!!!");
+            }
             break;
         }
-        sc.close();
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        System.out.printf("Введите первое число: ");
+        int a = 0;
+        if (!scn.hasNextInt()) {
+            System.out.println("ВЫ ввели неверный номер!!!: ");
+        } else {
+            a = scn.nextInt();
+            Scanner sc = new Scanner(System.in);
+            System.out.printf("Введите операцию: +, -, *, / \n");
+            String signOperation = "";
+            if (sc.hasNextLine()) {
+                signOperation = sc.nextLine();
+            }
+            if (signOperation.equals("+") || signOperation.equals("-") || signOperation.equals("*")
+                    || signOperation.equals("/")) {
+                int b = 0;
+                System.out.printf("Введите второе число: ");
+                if (!scn.hasNextInt()) {
+                    System.out.println("Вы ввели неверный номер!!!");
+                } else {
+                    b = scn.nextInt();
+                    printResultOfOperation(a, b, signOperation);
+                }
+            } else {
+                System.out.println("Вы ввели неправильную операцию!!!");
+            }
+            scn.close();
+            sc.close();
+        }
     }
 }
